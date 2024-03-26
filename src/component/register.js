@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import '../css/styles.css'
+import '../css/stylessRegister.css'
 import * as Yup from "yup"
 import Swal from 'sweetalert2'
 import { Formik, useFormik } from 'formik';
@@ -122,6 +122,7 @@ function Register() {
 
   return (
 
+
     <div className="App">
       <nav className="navbar navbar-expand-lg navbar-light fixed-top shadow-sm" id="mainNav">
         <div className="container px-5">
@@ -132,7 +133,7 @@ function Register() {
           </button>
           <div className="collapse navbar-collapse" id="navbarResponsive">
             <ul className="navbar-nav ms-auto me-4 my-3 my-lg-0">
-              
+
             </ul>
             <button className="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0" data-bs-toggle="modal" data-bs-target="#feedbackModal">
               <span className="d-flex align-items-center">
@@ -143,7 +144,7 @@ function Register() {
           </div>
         </div>
       </nav>
- 
+
       <header className="masthead .bg-light">
         <div className="container rounded border border-dark-subtle p-2 mb-2 ">
           <div className="row justify-content-center">
@@ -351,8 +352,12 @@ function Register() {
               </form>
             </div>
           </div>
-        </div> 
+        </div>
+
       </header>
+
+
+
     </div>
   );
 }

@@ -32,3 +32,15 @@ export const RegistrarPsicologo = ( Psicologo ) =>{
         });
         
 }
+
+export const getServicios = () =>{
+     
+    const url = `${baseUrls}Servicio`;
+    return fetch( url );
+}
+
+export const getIdiomas = () =>{
+     
+    const url = `${baseUrls}idioma`;
+    return fetch( url );
+}

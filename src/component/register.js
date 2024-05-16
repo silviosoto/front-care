@@ -3,33 +3,60 @@ import '../css/stylessRegister.css'
 import * as Yup from "yup"
 import Swal from 'sweetalert2'
 import { Formik, useFormik } from 'formik';
-import { getDepatamentos, getMunicipios, RegistrarPsicologo } from '../component/services/ServicesRegister';
+import Select from 'react-select'
+
+import {
+  getDepatamentos, getMunicipios, RegistrarPsicologo,
+  getServicios,
+  getIdiomas
+} from '../component/services/ServicesRegister';
 
 
 function Register() {
+  
   const datosPsicologoInit = {
+    id: 0,
+
+  }
+
+
+  // const psicologoIdioma = [
+  //   {
+  //     id: 0,
+  //     idIdioma: 0,
+  //     idPsicologo: 0
+  //   }
+  // ]
+
+  const psicologoServicios = [
+ 
+  ]
+
+  const datosPersonalesInit = {
     id: 0,
     descripcion: "",
     estado: "1",
     validado: "0",
-    idDatosPersonales: 0
-  }
-
-  const datosPersonalesInit = {
-    id: 0,
+    idDatosPersonales: 0,
+    experiencia: 0,
     nombre: "",
     apellidos: "",
     fechaNacimiento: "",
+    descripcion:"",
     email: "",
     telefono: "",
     tipoId: "1",
     numeroId: 0,
     ciudad: 0,
     departamento: 0,
-    idDatosPersonalesNavigation: datosPsicologoInit
-  }
+    idDatosPersonalesNavigation: datosPsicologoInit,
+    psicologoServicios:{},
+    psicologoIdiomas:{}
+  } 
 
   const [selectDepartamentos, setSelectDepartamentos] = useState([]);
+  const [selectServicios, setselectServicios] = useState([]);
+  const [selectIdiomas, setselectIdiomas] = useState([]);
   const [selectMunicipios, setSelectMunicipios] = useState([]);
 
   const validationRules = Yup.object().shape({
@@ -41,26 +68,53 @@ function Register() {
     numeroId: Yup.number().required('required'),
     ciudad: Yup.number().required('required'),
     departamento: Yup.number().required('required'),
-
+    descripcion: Yup.mixed().required('required')
   })
 
   const handleEnviar = (data) => {
-
-    data.idDatosPersonalesNavigation.descripcion = data.descripcion;
-    console.log("handleEnviar", data);
-    delete data.descripcion
-    RegistrarPsicologo(data)
-      .then(data => {
-        Swal.fire({
-          title: "Good job!",
-          text: "You clicked the button!",
-          icon: "success"
+    try {
+      console.log("data", data, data.psicologoIdioma)
+      // data.idDatosPersonalesNavigation.descripcion = data.descripcion;
+      let idDatosPersonalesNavigation = {
+        id: 0,
+        nombre: data.nombre,
+        apellidos: data.apellidos,
+        fechaNacimiento: data.fechaNacimiento,
+        email: data.email,
+        telefono:  data.telefono,
+        tipoId: "1",
+        numeroId: data.numeroId
+      }
+  
+      let payload = {
+        id: 0,
+        psicologoIdiomas: data.psicologoIdiomas,
+        descripcion: data.descripcion,
+        estado: "1",
+        validado: "0",
+        idDatosPersonales: 0,
+        experiencia: data.experiencia,
+        idDatosPersonalesNavigation,
+        psicologoServicios: data.psicologoServicios,
+      }
+  
+      // delete data.descripcion
+      RegistrarPsicologo(payload)
+        .then(data => {
+          Swal.fire({
+            title: "Good job!",
+            text: "You clicked the button!",
+            icon: "success"
+          });
+        })
+        .catch(e => {
+          console.log("error: handleEnviar ", e);
+          Swal.fire('Error', e, 'Error al ggrabar los datos');
         });
-      })
-      .catch(e => {
-        console.log("error: handleEnviar ", e);
-        Swal.fire('Error', e, 'Error al ggrabar los datos');
-      });
+    } catch (error) {
+        console.log("handleEnviar", error )
+    }
+   
   };
 
   const formik = useFormik({
@@ -68,6 +122,8 @@ function Register() {
     validationSchema: validationRules,
     onSubmit: handleEnviar
   })
+
+ 
 
 
   const GetDepartamentos = () => {
@@ -115,9 +171,55 @@ function Register() {
       });
   };
 
+  const GetServiciosPsicologo = () => {
+
+    getServicios().then(response => response.json())
+      .then(data => {
+
+        let servicios = [];
+        if (data != undefined) {
+          servicios = data;
+        }
+
+        let selectServicios = servicios.map((a, y) =>
+          ( { value:a.id, label: a.nombre })
+        );
+        
+        console.log("selectServicios", selectServicios);
+        
+        setselectServicios(selectServicios)
+      })
+      .catch(e => {
+        console.log(e);
+      });
+  };
+
+  const GetIdiomasPsicologo = () => {
+
+    getIdiomas().then(response => response.json())
+      .then(data => {
+
+        let servicios = [];
+        if (data != undefined) {
+          servicios = data;
+        }
+
+        let Idiomas = servicios.map((a, y) =>
+          ( { value:a.id, label: a.nombre })
+        );
+
+        setselectIdiomas(Idiomas)
+      })
+      .catch(e => {
+        console.log(e);
+      });
+  };
+  
 
   useEffect(() => {
     GetDepartamentos();
+    GetIdiomasPsicologo();
+    GetServiciosPsicologo();
   }, []);
 
   return (
@@ -146,7 +248,8 @@ function Register() {
       </nav>
 
       <header className="masthead .bg-light">
-        <div className="container rounded border border-dark-subtle p-2 mb-2 ">
+
+        <div className="container   rounded border border-dark-subtle p-2 mb-2 shadow-sm p-3 mb-5 bg-body-tertiary rounded">
           <div className="row justify-content-center">
             <div className="col-lg-9">
               <h1 className="mb-3">Registrar</h1>
@@ -328,11 +431,78 @@ function Register() {
                       className="form-label"
                       htmlFor="grid-password"
                     >
+                      Idiomas
+                    </label>
+                    <Select 
+                      onChange={(value) => 
+                      {
+                        let body = value.map((a, y) => 
+                          ({id:0, idIdioma: a?.value, idPsicologo: 0  })
+                        );
+                        formik.setFieldValue('psicologoIdiomas',body)
+                      } 
+                      } 
+                      value={formik.values.idDatosPersonalesNavigation["psicologoIdiomas"]}
+                      isMulti
+                      name='psicologoIdiomas'
+                      closeMenuOnSelect={false}
+                      options={selectIdiomas} />   
+
+                    {formik.errors.idIdioma && formik.touched.idIdioma && (
+                      <div style={{ "color": "red" }}> {formik.errors.idIdioma} </div>
+                    )}
+                  </div>
+                  <div className="col-md-6">
+                    <label
+                      className="form-label"
+                      htmlFor="grid-password"
+                    >
+                      Años de Experiencia
+                    </label>
+                    <input
+                      type="text"
+                      name="experiencia"
+                      value={formik.values.experiencia}
+                      onChange={formik.handleChange}
+                      className="form-control"
+                    />
+                    {formik.errors.experiencia && formik.touched.experiencia && (
+                      <div style={{ "color": "red" }}> {formik.errors?.experiencia} </div>
+                    )}
+                  </div>
+                  <div className="col-md-6">
+                    <label
+                      className="form-label"
+                      htmlFor="grid-password"
+                    >
+                      Servicios
+                    </label>
+                    <Select 
+                      onChange={(value, actionMeta) => 
+                      {
+                        let body = value.map((a, y) => 
+                          ({id:0, idServicio: a?.value, idPsicologo: 0  })
+                        );
+                        formik.setFieldValue('psicologoServicios',body)
+                      } 
+                      } 
+                      value={formik.values.idDatosPersonalesNavigation["psicologoServicios"]}
+                      isMulti
+                      name='idServicio'
+                      closeMenuOnSelect={false}
+                      options={selectServicios} />           
+                  </div>
+
+                  <div className="col-md-6">
+                    <label
+                      className="form-label"
+                      htmlFor="grid-password"
+                    >
                       Acerca de mi
                     </label>
                     <textarea
                       name="descripcion"
-                      value={formik.values.idDatosPersonalesNavigation["description"]}
+                      value={formik.values.descripcion}
                       onChange={formik.handleChange}
                       className="form-control"
                       rows="4"

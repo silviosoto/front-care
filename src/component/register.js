@@ -13,24 +13,11 @@ import {
 
 
 function Register() {
-  
+
   const datosPsicologoInit = {
     id: 0,
 
   }
-
-
-  // const psicologoIdioma = [
-  //   {
-  //     id: 0,
-  //     idIdioma: 0,
-  //     idPsicologo: 0
-  //   }
-  // ]
-
-  const psicologoServicios = [
- 
-  ]
 
   const datosPersonalesInit = {
     id: 0,
@@ -38,21 +25,22 @@ function Register() {
     estado: "1",
     validado: "0",
     idDatosPersonales: 0,
-    experiencia: 0,
+    experiencia: null,
     nombre: "",
     apellidos: "",
     fechaNacimiento: "",
-    descripcion:"",
+    descripcion: "",
     email: "",
     telefono: "",
     tipoId: "1",
-    numeroId: 0,
-    ciudad: 0,
-    departamento: 0,
+    numeroId: null,
+    ciudad: null,
+    departamento: null,
+    file: "",
     idDatosPersonalesNavigation: datosPsicologoInit,
-    psicologoServicios:{},
-    psicologoIdiomas:{}
-  } 
+    psicologoServicios: null,
+    psicologoIdiomas: null
+  }
 
   const [selectDepartamentos, setSelectDepartamentos] = useState([]);
   const [selectServicios, setselectServicios] = useState([]);
@@ -68,26 +56,33 @@ function Register() {
     numeroId: Yup.number().required('required'),
     ciudad: Yup.number().required('required'),
     departamento: Yup.number().required('required'),
-    descripcion: Yup.mixed().required('required')
+    descripcion: Yup.mixed().required('required'),
+    file: Yup.mixed().required('required'),
+    psicologoIdiomas: Yup.mixed().required('required'),
+    psicologoServicios: Yup.mixed().required('required'),
+    direccion: Yup.mixed().required('required'),
+    experiencia: Yup.mixed().required('required'),
+  
   })
 
   const handleEnviar = (data) => {
     try {
-      console.log("data", data, data.psicologoIdioma)
-      // data.idDatosPersonalesNavigation.descripcion = data.descripcion;
+      console.log("data", data)
+
       let idDatosPersonalesNavigation = {
         id: 0,
         nombre: data.nombre,
         apellidos: data.apellidos,
         fechaNacimiento: data.fechaNacimiento,
         email: data.email,
-        telefono:  data.telefono,
+        telefono: data.telefono,
         tipoId: "1",
         numeroId: data.numeroId
       }
-  
+
       let payload = {
         id: 0,
+        file: data.file,
         psicologoIdiomas: data.psicologoIdiomas,
         descripcion: data.descripcion,
         estado: "1",
@@ -97,24 +92,34 @@ function Register() {
         idDatosPersonalesNavigation,
         psicologoServicios: data.psicologoServicios,
       }
-  
-      // delete data.descripcion
+
       RegistrarPsicologo(payload)
         .then(data => {
-          Swal.fire({
-            title: "Good job!",
-            text: "You clicked the button!",
-            icon: "success"
-          });
+          console.log(data);
+          if (data.ok) {
+            Swal.fire({
+              title: "Good job!",
+              text: "You clicked the button!",
+              icon: "success"
+            });
+
+          } else {
+            Swal.fire({
+              title: "Error!",
+              text: "Error al guardar, porfavor revise nuevamente sus datos!",
+              icon: "error"
+            });
+          }
+
         })
         .catch(e => {
           console.log("error: handleEnviar ", e);
-          Swal.fire('Error', e, 'Error al ggrabar los datos');
+          Swal.fire('Error', e, 'Error al guardar!');
         });
     } catch (error) {
-        console.log("handleEnviar", error )
+      console.log("handleEnviar", error)
     }
-   
+
   };
 
   const formik = useFormik({
@@ -122,9 +127,6 @@ function Register() {
     validationSchema: validationRules,
     onSubmit: handleEnviar
   })
-
- 
-
 
   const GetDepartamentos = () => {
 
@@ -182,11 +184,11 @@ function Register() {
         }
 
         let selectServicios = servicios.map((a, y) =>
-          ( { value:a.id, label: a.nombre })
+          ({ value: a.id, label: a.nombre })
         );
-        
+
         console.log("selectServicios", selectServicios);
-        
+
         setselectServicios(selectServicios)
       })
       .catch(e => {
@@ -205,7 +207,7 @@ function Register() {
         }
 
         let Idiomas = servicios.map((a, y) =>
-          ( { value:a.id, label: a.nombre })
+          ({ value: a.id, label: a.nombre })
         );
 
         setselectIdiomas(Idiomas)
@@ -214,7 +216,6 @@ function Register() {
         console.log(e);
       });
   };
-  
 
   useEffect(() => {
     GetDepartamentos();
@@ -222,8 +223,11 @@ function Register() {
     GetServiciosPsicologo();
   }, []);
 
-  return (
+  useEffect(() => {
+    console.log(formik.values);
+  }, [formik.values]);
 
+  return (
 
     <div className="App">
       <nav className="navbar navbar-expand-lg navbar-light fixed-top shadow-sm" id="mainNav">
@@ -402,7 +406,7 @@ function Register() {
                       <option value={0}>SELECCIONE UNA OPCION</option>
                       {selectDepartamentos}
                     </select>
-                    {formik.errors.departamento && formik.touched.departamento(
+                    {formik.errors.departamento && formik.touched.departamento &&(
                       <div style={{ "color": "red" }}> {formik.errors.departamento} </div>
                     )}
                   </div>
@@ -433,23 +437,22 @@ function Register() {
                     >
                       Idiomas
                     </label>
-                    <Select 
-                      onChange={(value) => 
-                      {
-                        let body = value.map((a, y) => 
-                          ({id:0, idIdioma: a?.value, idPsicologo: 0  })
+                    <Select
+                      onChange={(value) => {
+                        let body = value.map((a, y) =>
+                          ({ Id: 0, IdIdioma: a?.value, IdPsicologo: 0, value: a?.value, label: a?.label })
                         );
-                        formik.setFieldValue('psicologoIdiomas',body)
-                      } 
-                      } 
-                      value={formik.values.idDatosPersonalesNavigation["psicologoIdiomas"]}
+                        formik.setFieldValue('psicologoIdiomas', body)
+                      }
+                      }
+                      value={formik.values.psicologoIdiomas}
                       isMulti
                       name='psicologoIdiomas'
                       closeMenuOnSelect={false}
-                      options={selectIdiomas} />   
+                      options={selectIdiomas} />
 
-                    {formik.errors.idIdioma && formik.touched.idIdioma && (
-                      <div style={{ "color": "red" }}> {formik.errors.idIdioma} </div>
+                    {formik.errors.psicologoIdiomas && formik.touched.psicologoIdiomas && (
+                      <div style={{ "color": "red" }}> {formik.errors.psicologoIdiomas} </div>
                     )}
                   </div>
                   <div className="col-md-6">
@@ -460,7 +463,7 @@ function Register() {
                       Años de Experiencia
                     </label>
                     <input
-                      type="text"
+                      type="number"
                       name="experiencia"
                       value={formik.values.experiencia}
                       onChange={formik.handleChange}
@@ -477,20 +480,42 @@ function Register() {
                     >
                       Servicios
                     </label>
-                    <Select 
-                      onChange={(value, actionMeta) => 
-                      {
-                        let body = value.map((a, y) => 
-                          ({id:0, idServicio: a?.value, idPsicologo: 0  })
+                    <Select
+                      onChange={(value, actionMeta) => {
+                        let body = value.map((a, y) =>
+                          ({ id: 0, idServicio: a?.value, idPsicologo: 0, value: a?.value, label: a?.label })
                         );
-                        formik.setFieldValue('psicologoServicios',body)
-                      } 
-                      } 
-                      value={formik.values.idDatosPersonalesNavigation["psicologoServicios"]}
+                        formik.setFieldValue('psicologoServicios', body)
+                      }
+                      }
+                      value={formik.values.psicologoServicios}
                       isMulti
                       name='idServicio'
                       closeMenuOnSelect={false}
-                      options={selectServicios} />           
+                      options={selectServicios} />
+                    {formik.errors.psicologoServicios && formik.touched.psicologoServicios && (
+                      <div style={{ "color": "red" }}> {formik.errors?.psicologoServicios} </div>
+                    )}
+                  </div>
+                  <div className="col-md-6">
+                    <label
+                      className="form-label"
+                      htmlFor="grid-password"
+                    >
+                      CV
+                    </label>
+                    <input
+                      name="file"
+                      onChange={(e) => {
+
+                        formik.setFieldValue('file', e.target.files[0])
+                      }
+                      }
+                      type="file"
+                      accept="application/pdf" />
+                    {formik.errors.file && formik.touched.file && (
+                      <div style={{ "color": "red" }}> {formik.errors?.file} </div>
+                    )}
                   </div>
 
                   <div className="col-md-6">
@@ -525,9 +550,6 @@ function Register() {
         </div>
 
       </header>
-
-
-
     </div>
   );
 }

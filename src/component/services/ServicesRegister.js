@@ -2,45 +2,53 @@
 // require('dotenv').config()
 // const baseUrls = process.env.REACT_APP_NOT_SECRET_CODE;
 const baseUrls = 'https://localhost:7269/api/';
-export const getDepatamentos = ( ) =>{
-     
+export const getDepatamentos = () => {
+
     const url = `${baseUrls}Departamento`;
 
-    return fetch( url );
+    return fetch(url);
 }
 
-export const getMunicipios = ( idDepartamento) =>{
-     
-    const url = `${baseUrls}Municipio/departamento/${ idDepartamento }`;
-    console.log( baseUrls ) 
-    return fetch( url );
+export const getMunicipios = (idDepartamento) => {
+
+    const url = `${baseUrls}Municipio/departamento/${idDepartamento}`;
+    console.log(baseUrls)
+    return fetch(url);
 }
 
-export const RegistrarPsicologo = ( Psicologo ) =>{
-     
-    const url =`${baseUrls}Psicologo`;
- 
+export const RegistrarPsicologo = (Psicologo) => {
+
+    const url = `${baseUrls}Psicologo`;
+
+    const formData = new FormData();
+
+    for (const name in Psicologo) {
+
+        if (name == "psicologoIdiomas" || name == "idDatosPersonalesNavigation" || name == "psicologoServicios") {
+            let psicologoIdiomas = Psicologo[name]
+            formData.append(name, JSON.stringify(psicologoIdiomas));
+        } else {
+            formData.append(name, Psicologo[name]);
+        }
+    }
+
     return fetch(
-         url, 
+        url,
         {
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-                },
             method: 'POST',
-            body:JSON.stringify(Psicologo)  
+            body: formData
         });
-        
+
 }
 
-export const getServicios = () =>{
-     
+export const getServicios = () => {
+
     const url = `${baseUrls}Servicio`;
-    return fetch( url );
+    return fetch(url);
 }
 
-export const getIdiomas = () =>{
-     
+export const getIdiomas = () => {
+
     const url = `${baseUrls}idioma`;
-    return fetch( url );
+    return fetch(url);
 }

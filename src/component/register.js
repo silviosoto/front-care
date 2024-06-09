@@ -62,13 +62,12 @@ function Register() {
     psicologoServicios: Yup.mixed().required('required'),
     direccion: Yup.mixed().required('required'),
     experiencia: Yup.mixed().required('required'),
-  
+
   })
 
   const handleEnviar = (data) => {
     try {
-      console.log("data", data)
-
+ 
       let idDatosPersonalesNavigation = {
         id: 0,
         nombre: data.nombre,
@@ -95,7 +94,7 @@ function Register() {
 
       RegistrarPsicologo(payload)
         .then(data => {
-          console.log(data);
+          
           if (data.ok) {
             Swal.fire({
               title: "Good job!",
@@ -103,21 +102,30 @@ function Register() {
               icon: "success"
             });
 
-          } else {
+          } else { 
+            if (data.status === 400) {
+              data.json().then(function(object) {
+                Swal.fire({
+                  title: "Error!",
+                  text: object.error,
+                  icon: "error"
+                });
+              })          
+            }
+ 
             Swal.fire({
               title: "Error!",
               text: "Error al guardar, porfavor revise nuevamente sus datos!",
               icon: "error"
             });
           }
-
         })
         .catch(e => {
-          console.log("error: handleEnviar ", e);
+           
           Swal.fire('Error', e, 'Error al guardar!');
         });
     } catch (error) {
-      console.log("handleEnviar", error)
+      
     }
 
   };
@@ -145,7 +153,7 @@ function Register() {
         setSelectDepartamentos(selectDepartamentos)
       })
       .catch(e => {
-        console.log(e);
+         
       });
   };
 
@@ -155,7 +163,7 @@ function Register() {
 
     getMunicipios(event.target.value).then(response => response.json())
       .then(data => {
-        console.log(data);
+      
         let municipios = [];
         if (data != undefined) {
           municipios = data;
@@ -169,7 +177,7 @@ function Register() {
 
       })
       .catch(e => {
-        console.log(e);
+       
       });
   };
 
@@ -187,12 +195,12 @@ function Register() {
           ({ value: a.id, label: a.nombre })
         );
 
-        console.log("selectServicios", selectServicios);
+    
 
         setselectServicios(selectServicios)
       })
       .catch(e => {
-        console.log(e);
+       
       });
   };
 
@@ -213,7 +221,7 @@ function Register() {
         setselectIdiomas(Idiomas)
       })
       .catch(e => {
-        console.log(e);
+         
       });
   };
 
@@ -223,10 +231,7 @@ function Register() {
     GetServiciosPsicologo();
   }, []);
 
-  useEffect(() => {
-    console.log(formik.values);
-  }, [formik.values]);
-
+ 
   return (
 
     <div className="App">
@@ -406,7 +411,7 @@ function Register() {
                       <option value={0}>SELECCIONE UNA OPCION</option>
                       {selectDepartamentos}
                     </select>
-                    {formik.errors.departamento && formik.touched.departamento &&(
+                    {formik.errors.departamento && formik.touched.departamento && (
                       <div style={{ "color": "red" }}> {formik.errors.departamento} </div>
                     )}
                   </div>
@@ -498,21 +503,18 @@ function Register() {
                     )}
                   </div>
                   <div className="col-md-6">
-                    <label
-                      className="form-label"
-                      htmlFor="grid-password"
-                    >
-                      CV
-                    </label>
+                    <label for="formFile" class="form-label">CV</label>
+
                     <input
+                      class="form-control"
                       name="file"
                       onChange={(e) => {
-
                         formik.setFieldValue('file', e.target.files[0])
                       }
                       }
                       type="file"
                       accept="application/pdf" />
+
                     {formik.errors.file && formik.touched.file && (
                       <div style={{ "color": "red" }}> {formik.errors?.file} </div>
                     )}

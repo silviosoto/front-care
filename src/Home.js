@@ -1,8 +1,11 @@
 import logo from './logo.svg';
 // import './App.css';
 import './css/styles.css'
+import './css/Home.css'
 import miImagen from '../src/assets/img/8602650.png';
 import miImagen2 from '../src/assets/img/8602515.png';
+import miImagen3 from '../src/assets/img/joven-mujer.png';
+
 
 function Home() {
     return (
@@ -35,7 +38,16 @@ function Home() {
                         <div className="col-lg-6">
                             <div className="mb-5 mb-lg-0 text-center text-lg-start">
                                 <h1 className="display-1 lh-1 mb-3">Mereces ser feliz.</h1>
-                                <p className="lead fw-normal text-muted mb-5">Encuentra ayuda profesional psicologica, haz match con un gran número de profecionales a tu disposición.</p>
+                                <p className="lead fw-normal text-muted mb-5"> Haz parte de una red de profesionales de la salud mental, ofreciendo tus servicios profesionales a la comunidad desde la comodidad de tu hogar con horarios flexibles.</p>
+                                <br />
+                                <button className="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0" data-bs-toggle="modal">
+                                    <a className="nav-link me-lg-3" href="/register">
+                                        <span className="d-flex align-items-center">
+                                            <i className="bi-chat-text-fill me-2"></i>
+                                            <span className="small">Trabaja con nosotros</span>
+                                        </span>
+                                    </a>
+                                </button>
                             </div>
                         </div>
                         <div className="col-lg-6">
@@ -53,7 +65,7 @@ function Home() {
                                     <rect x="-32.54" y="78.39" width="305.92" height="84.05" rx="42.03" transform="translate(-49.88 120.42) rotate(-45)"></rect></svg
                                 ><svg className="shape-2 d-none d-sm-block" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="50"></circle></svg>
                                 <div className="">
-                                <img width="480" height="380" className=" device img-fluid rounded-circle" data-device="iPhoneX" data-orientation="portrait" src={miImagen} />
+                                    <img width="350" height="auto" className=" device img-fluid rounded-circle" data-device="iPhoneX" data-orientation="portrait" src={miImagen} />
                                 </div>
                             </div>
                         </div>
@@ -65,8 +77,8 @@ function Home() {
                 <div className="container px-5">
                     <div className="row gx-5 justify-content-center">
                         <div className="col-xl-8">
-                            <div className="h2 fs-1 text-white mb-4">¿Eres psicologo y te gustaria hacer parte de nuestra comunidad ?</div>
-                            <button className="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0" data-bs-toggle="modal">
+                            <div className="h2 fs-1 text-white mb-4">¿Eres psicólogo y te gustaría hacer parte de nuestra comunidad?</div>
+                            <button className="btn btn-light rounded-pill px-3 mb-2 mb-lg-0" data-bs-toggle="modal">
                                 <a className="nav-link me-lg-3" href="/register">
                                     <span className="d-flex align-items-center">
                                         <i className="bi-chat-text-fill me-2"></i>
@@ -88,8 +100,8 @@ function Home() {
                                     <div className="col-md-6 mb-5">
                                         <div className="text-center">
                                             <i className="bi-phone icon-feature text-gradient d-block mb-3"></i>
-                                            <h3 className="font-alt">Citas viruales</h3>
-                                            <p className="text-muted mb-0">Presta tus servicios desde donde estes.</p>
+                                            <h3 className="font-alt">Citas virtuales</h3>
+                                            <p className="text-muted mb-0">Presta tus servicios desde donde estés.</p>
                                         </div>
                                     </div>
                                     <div className="col-md-6 mb-5">
@@ -105,14 +117,14 @@ function Home() {
                                         <div className="text-center">
                                             <i className="bi-gift icon-feature text-gradient d-block mb-3"></i>
                                             <h3 className="font-alt">Comunidad</h3>
-                                            <p className="text-muted mb-0">Ofrece servicios a personas de todo el pais.</p>
+                                            <p className="text-muted mb-0">Ofrece servicios a personas de todo el país.</p>
                                         </div>
                                     </div>
                                     <div className="col-md-6">
                                         <div className="text-center">
                                             <i className="bi-patch-check icon-feature text-gradient d-block mb-3"></i>
                                             <h3 className="font-alt">Administración</h3>
-                                            <p className="text-muted mb-0">Gestiona tu tiempo y citas con MindCare</p>
+                                            <p className="text-muted mb-0">Gestiona tu tiempo y tus citas con MindCare.</p>
                                         </div>
                                     </div>
                                 </div>
@@ -134,7 +146,7 @@ function Home() {
                                     <rect x="-32.54" y="78.39" width="305.92" height="84.05" rx="42.03" transform="translate(-49.88 120.42) rotate(-45)"></rect></svg
                                 ><svg className="shape-2 d-none d-sm-block" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="50"></circle></svg>
                                 <div className="device-wrapper">
-                                    <img  className=" device img-fluid rounded-circle" data-device="iPhoneX" data-orientation="portrait" src={miImagen} />
+                                    <img className=" device img-fluid rounded-circle" data-device="iPhoneX" data-orientation="portrait" src={miImagen3} />
                                 </div>
                             </div>
                         </div>
@@ -146,36 +158,56 @@ function Home() {
                 <div className="container px-5">
                     <div className="row gx-5 align-items-center justify-content-center justify-content-lg-between">
                         <div className="col-12 col-lg-5">
-                            <h2 className="display-4 lh-1 mb-4">Psicologos profesionales </h2>
-                            <p className="lead fw-normal text-muted mb-5 mb-lg-0">Haz partede de una red de profesionales de la salud mental, ofreciendo tus servicios proifesionales
-                                a la comunidad desde la comodidad de tu hogar con orarios flexibles..</p>
-                                <br/>
-                                <button className="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0" data-bs-toggle="modal">
-                            <a className="nav-link me-lg-3" href="/register">
-                                <span className="d-flex align-items-center">
-                                    <i className="bi-chat-text-fill me-2"></i>
-                                    <span className="small">Trabaja con nosotros</span>
-                                </span>
-                            </a>
-                        </button>
+                            <h2 className="display-4 lh-1 mb-4">Proceso de registro</h2>
+                            <p className="lead fw-normal text-muted mb-5 mb-lg-0"></p>
+                            <br />
+                            <ul class="list-unstyled mb-5">
+                                <li class="mb-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="var(--bs-success)" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"></path>
+                                    </svg>
+                                    <span class="ms-2">Haz clic en el botón "Trabajar con nosotros" y llena el formulario.</span>
+                                </li>
+                                <li class="mb-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="var(--bs-success)" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"></path>
+                                    </svg>
+                                    <span class="ms-2">Adjunta tu CV actualizado con soporte de título universitario.</span>
+                                </li>
+                                <li class="mb-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="var(--bs-success)" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"></path>
+                                    </svg>
+                                    <span class="ms-2">Espera la notificación por correo electrónico.</span>
+                                </li>
+                            </ul>
+                            <br />
+                            <button className="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0" data-bs-toggle="modal">
+                                <a className="nav-link me-lg-3" href="/register">
+                                    <span className="d-flex align-items-center">
+                                        <i className="bi-chat-text-fill me-2"></i>
+                                        <span className="small">Trabaja con nosotros</span>
+                                    </span>
+                                </a>
+                            </button>
                         </div>
-                        
+
                         <div className="col-sm-8 col-md-6">
                             <div className="px-5 px-sm-0">
-                            <img  className=" device img-fluid rounded-circle" data-device="iPhoneX" data-orientation="portrait" src={miImagen2} />
-                                </div>
+                                <img className=" device img-fluid rounded-circle" data-device="iPhoneX" data-orientation="portrait" src={miImagen2} />
+                            </div>
                         </div>
-                        
+
                     </div>
                 </div>
-            </section> 
+            </section>
             <footer className="bg-black text-center py-5">
                 <div className="container px-5">
                     <div className="text-white-50 small">
                         <div className="mb-2">&copy; Your MindCare 2024. All Rights Reserved.</div>
                     </div>
                 </div>
-            </footer> 
+            </footer>
         </div>
     );
 }

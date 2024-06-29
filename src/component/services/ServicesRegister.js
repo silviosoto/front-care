@@ -1,7 +1,7 @@
 // import 'dotenv/config'
 // require('dotenv').config()
 // const baseUrls = process.env.REACT_APP_NOT_SECRET_CODE;
-const baseUrls = 'https://localhost:7269/api/';
+const baseUrls = 'https://mindcarebacks.azurewebsites.net/api/';
 export const getDepatamentos = () => {
 
     const url = `${baseUrls}Departamento`;

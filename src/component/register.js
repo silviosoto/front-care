@@ -15,8 +15,7 @@ import {
 function Register() {
 
   const datosPsicologoInit = {
-    id: 0,
-
+    id: 0
   }
 
   const datosPersonalesInit = {
@@ -66,8 +65,24 @@ function Register() {
   })
 
   const handleEnviar = (data) => {
+
     try {
- 
+
+      var allowedExtension = /(\.pdf)$/i;
+
+      if (!allowedExtension.exec(data.file)) {
+
+        data.file.value = '';
+
+        Swal.fire({
+          title: "Error!",
+          text: "Por favor, sube un archivo con extensión .pdf",
+          icon: "error"
+        });
+
+        return false;
+      }
+
       let idDatosPersonalesNavigation = {
         id: 0,
         nombre: data.nombre,
@@ -94,7 +109,7 @@ function Register() {
 
       RegistrarPsicologo(payload)
         .then(data => {
-          
+
           if (data.ok) {
             Swal.fire({
               title: "Good job!",
@@ -102,17 +117,17 @@ function Register() {
               icon: "success"
             });
 
-          } else { 
+          } else {
             if (data.status === 400) {
-              data.json().then(function(object) {
+              data.json().then(function (object) {
                 Swal.fire({
                   title: "Error!",
                   text: object.error,
                   icon: "error"
                 });
-              })          
+              })
             }
- 
+
             Swal.fire({
               title: "Error!",
               text: "Error al guardar, porfavor revise nuevamente sus datos!",
@@ -121,11 +136,11 @@ function Register() {
           }
         })
         .catch(e => {
-           
+
           Swal.fire('Error', e, 'Error al guardar!');
         });
     } catch (error) {
-      
+
     }
 
   };
@@ -153,7 +168,7 @@ function Register() {
         setSelectDepartamentos(selectDepartamentos)
       })
       .catch(e => {
-         
+
       });
   };
 
@@ -163,7 +178,7 @@ function Register() {
 
     getMunicipios(event.target.value).then(response => response.json())
       .then(data => {
-      
+
         let municipios = [];
         if (data != undefined) {
           municipios = data;
@@ -177,7 +192,7 @@ function Register() {
 
       })
       .catch(e => {
-       
+
       });
   };
 
@@ -195,12 +210,12 @@ function Register() {
           ({ value: a.id, label: a.nombre })
         );
 
-    
+
 
         setselectServicios(selectServicios)
       })
       .catch(e => {
-       
+
       });
   };
 
@@ -221,7 +236,7 @@ function Register() {
         setselectIdiomas(Idiomas)
       })
       .catch(e => {
-         
+
       });
   };
 
@@ -231,7 +246,7 @@ function Register() {
     GetServiciosPsicologo();
   }, []);
 
- 
+
   return (
 
     <div className="App">

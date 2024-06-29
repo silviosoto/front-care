@@ -5,6 +5,7 @@ import './css/Home.css'
 import miImagen from '../src/assets/img/8602650.png';
 import miImagen2 from '../src/assets/img/8602515.png';
 import miImagen3 from '../src/assets/img/joven-mujer.png';
+import miImagen4 from '../src/assets/img/MindCare.png';
 
 
 function Home() {
@@ -12,7 +13,11 @@ function Home() {
         <div className="App">
             <nav className="navbar navbar-expand-lg navbar-light fixed-top shadow-sm" id="mainNav">
                 <div className="container px-5">
-                    <a className="navbar-brand fw-bold" href="/">MindCare</a>
+                    <div className="">
+                        <img width="130" height="auto" className=" device img-fluid" 
+                        data-device="iPhoneX" data-orientation="portrait" src={miImagen4} />
+                    </div>
+                    {/* <a className="navbar-brand fw-bold" href="/">MindCare</a>  */}
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                         Menu
                         <i className="bi-list"></i>
@@ -37,7 +42,7 @@ function Home() {
                     <div className="row gx-5 align-items-center">
                         <div className="col-lg-6">
                             <div className="mb-5 mb-lg-0 text-center text-lg-start">
-                                <h1 className="display-1 lh-1 mb-3">Mereces ser feliz.</h1>
+                                <h1 className="display-1 lh-1 mb-3">Hagamos del bienestar mental una prioridad.</h1>
                                 <p className="lead fw-normal text-muted mb-5"> Haz parte de una red de profesionales de la salud mental, ofreciendo tus servicios profesionales a la comunidad desde la comodidad de tu hogar con horarios flexibles.</p>
                                 <br />
                                 <button className="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0" data-bs-toggle="modal">
@@ -101,14 +106,14 @@ function Home() {
                                         <div className="text-center">
                                             <i className="bi-phone icon-feature text-gradient d-block mb-3"></i>
                                             <h3 className="font-alt">Citas virtuales</h3>
-                                            <p className="text-muted mb-0">Presta tus servicios desde donde estés.</p>
+                                            <p className="text-muted mb-0">Gestiona tu tiempo y tus citas desde donde estés.</p>
                                         </div>
                                     </div>
                                     <div className="col-md-6 mb-5">
                                         <div className="text-center">
                                             <i className="bi-camera icon-feature text-gradient d-block mb-3"></i>
                                             <h3 className="font-alt">Ofrece diferentes servicios</h3>
-                                            <p className="text-muted mb-0"> Ofrece servicios especializados.</p>
+                                            <p className="text-muted mb-0"> Ofrece servicios especializados y escoge cuanto cobrar por cada uno.</p>
                                         </div>
                                     </div>
                                 </div>
@@ -117,14 +122,15 @@ function Home() {
                                         <div className="text-center">
                                             <i className="bi-gift icon-feature text-gradient d-block mb-3"></i>
                                             <h3 className="font-alt">Comunidad</h3>
-                                            <p className="text-muted mb-0">Ofrece servicios a personas de todo el país.</p>
+                                            <p className="text-muted mb-0">los pacientes en todo el país harán match con tus gustos y hobbies
+                                                para facilitar la conexión.</p>
                                         </div>
                                     </div>
                                     <div className="col-md-6">
                                         <div className="text-center">
                                             <i className="bi-patch-check icon-feature text-gradient d-block mb-3"></i>
-                                            <h3 className="font-alt">Administración</h3>
-                                            <p className="text-muted mb-0">Gestiona tu tiempo y tus citas con MindCare.</p>
+                                            <h3 className="font-alt">Gestión Eficiente</h3>
+                                            <p className="text-muted mb-0">Gestión de citas, recordatorios, historia clínica y muchas herramientas más.</p>
                                         </div>
                                     </div>
                                 </div>
@@ -172,13 +178,19 @@ function Home() {
                                     <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="var(--bs-success)" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
                                         <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"></path>
                                     </svg>
-                                    <span class="ms-2">Adjunta tu CV actualizado con soporte de título universitario.</span>
+                                    <span class="ms-2">Adjunta tu CV actualizado con soporte de título universitario para validar tus datos profesionales.</span>
                                 </li>
                                 <li class="mb-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="var(--bs-success)" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
                                         <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"></path>
                                     </svg>
                                     <span class="ms-2">Espera la notificación por correo electrónico.</span>
+                                </li>
+                                <li class="mb-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="var(--bs-success)" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"></path>
+                                    </svg>
+                                    <span class="ms-2">Luego podras accder a la plataforma completar la configuración y ofertar tus servicios.</span>
                                 </li>
                             </ul>
                             <br />
@@ -204,7 +216,7 @@ function Home() {
             <footer className="bg-black text-center py-5">
                 <div className="container px-5">
                     <div className="text-white-50 small">
-                        <div className="mb-2">&copy; Your MindCare 2024. All Rights Reserved.</div>
+                        <div className="mb-2">&copy; MindCare 2024. All Rights Reserved.</div>
                     </div>
                 </div>
             </footer>

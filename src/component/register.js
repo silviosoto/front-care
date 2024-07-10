@@ -10,7 +10,7 @@ import {
   getServicios,
   getIdiomas
 } from '../component/services/ServicesRegister';
-
+import miImagen4 from '../../src/assets/img/MindCare.png';
 
 function Register() {
 
@@ -64,13 +64,22 @@ function Register() {
 
   })
 
+  const isPDF = (nombreArchivo) => {
+    // Obtener la extensión del archivo
+    const extension = nombreArchivo.split('.').pop().toLowerCase();
+    // Verificar si la extensión es 'pdf'
+    if (extension == 'pdf') {
+      return true
+    } else {
+      return false
+    }
+  }
+
   const handleEnviar = (data) => {
 
     try {
 
-      var allowedExtension = /(\.pdf)$/i;
-
-      if (!allowedExtension.exec(data.file)) {
+      if (!isPDF(data.file.name)) {
 
         data.file.value = '';
 
@@ -252,7 +261,9 @@ function Register() {
     <div className="App">
       <nav className="navbar navbar-expand-lg navbar-light fixed-top shadow-sm" id="mainNav">
         <div className="container px-5">
-          <a className="navbar-brand fw-bold" href="/">MindCare</a>
+          <a className="navbar-brand fw-bold" href="/">
+            <img width="130" height="auto" className=" device img-fluid"
+              data-device="iPhoneX" data-orientation="portrait" src={miImagen4} /></a>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             Menu
             <i className="bi-list"></i>
@@ -263,7 +274,7 @@ function Register() {
             </ul>
             <button className="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0" data-bs-toggle="modal" data-bs-target="#feedbackModal">
               <span className="d-flex align-items-center">
-                <i className="bi-chat-text-fill me-2"></i>
+                <i className=" bi-card-text me-2"></i>
                 <span className="small">Trabaja con nosotros</span>
               </span>
             </button>
@@ -273,10 +284,10 @@ function Register() {
 
       <header className="masthead .bg-light">
 
-        <div className="container   rounded border border-dark-subtle p-2 mb-2 shadow-sm p-3 mb-5 bg-body-tertiary rounded">
+        <div className="container">
           <div className="row justify-content-center">
             <div className="col-lg-9">
-              <h1 className="mb-3">Registrar</h1>
+              <h1 className="mb-4 pb-4">Registrar</h1>
               <form onSubmit={formik.handleSubmit} >
                 <div className="row g-3">
                   <div className="col-md-6">
@@ -556,6 +567,21 @@ function Register() {
                   <div className="col-12">
                     <div className="row">
                       <div className="col-md-6">
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" value="" required="true" id="flexCheckDefault" />
+                          <label class="form-check-label" for="flexCheckDefault">
+                            <p className='text-muted'>
+
+                            Autorizo el uso de mis datos de acuerdo a la Declaración de privacidad y acepto los Términos y condiciones y la <a className="text-reset" href='/autorizacionDatosPersonales' >Autorización de tratamiento de datos.</a>
+                            </p>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-12">
+                    <div className="row">
+                      <div className="col-md-6">
                         <button type="submit" className="btn btn-dark w-100 fw-bold" >Enviar</button>
                       </div>
                     </div>
@@ -565,7 +591,6 @@ function Register() {
             </div>
           </div>
         </div>
-
       </header>
     </div>
   );

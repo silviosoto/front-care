@@ -29,7 +29,7 @@ function Home() {
                         <button className="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0" data-bs-toggle="modal">
                             <a className="nav-link me-lg-3" href="/register">
                                 <span className="d-flex align-items-center">
-                                    <i className="bi-chat-text-fill me-2"></i>
+                                    <i className="bi-card-text me-2"></i>
                                     <span className="small">Trabaja con nosotros</span>
                                 </span>
                             </a>
@@ -43,12 +43,12 @@ function Home() {
                         <div className="col-lg-6">
                             <div className="mb-5 mb-lg-0 text-center text-lg-start">
                                 <h1 className="display-1 lh-1 mb-3">Hagamos del bienestar mental una prioridad.</h1>
-                                <p className="lead fw-normal text-muted mb-5"> Haz parte de una red de profesionales de la salud mental, ofreciendo tus servicios profesionales a la comunidad desde la comodidad de tu hogar con horarios flexibles.</p>
+                                <p className="lead fw-normal text-muted mb-5"> Somos una plataforma dedicada a conectar personas con ayuda psicologica profesional de alta calidad.</p>
                                 <br />
                                 <button className="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0" data-bs-toggle="modal">
                                     <a className="nav-link me-lg-3" href="/register">
                                         <span className="d-flex align-items-center">
-                                            <i className="bi-chat-text-fill me-2"></i>
+                                            <i className="bi-card-text me-2"></i>
                                             <span className="small">Trabaja con nosotros</span>
                                         </span>
                                     </a>
@@ -86,7 +86,7 @@ function Home() {
                             <button className="btn btn-light rounded-pill px-3 mb-2 mb-lg-0" data-bs-toggle="modal">
                                 <a className="nav-link me-lg-3" href="/register">
                                     <span className="d-flex align-items-center">
-                                        <i className="bi-chat-text-fill me-2"></i>
+                                        <i className="bi-card-text me-2"></i>
                                         <span className="small">Trabaja con nosotros</span>
                                     </span>
                                 </a>
@@ -111,16 +111,16 @@ function Home() {
                                     </div>
                                     <div className="col-md-6 mb-5">
                                         <div className="text-center">
-                                            <i className="bi-camera icon-feature text-gradient d-block mb-3"></i>
-                                            <h3 className="font-alt">Ofrece diferentes servicios</h3>
-                                            <p className="text-muted mb-0"> Ofrece servicios especializados y escoge cuanto cobrar por cada uno.</p>
+                                            <i className="bi-clipboard-check icon-feature text-gradient d-block mb-3"></i>
+                                            <h3 className="font-alt">Ofrece diferentes servicios especializados</h3>
+                                            <p className="text-muted mb-0"> Terapia individual, terapia de pareja... y escoge cuanto cobrar por cada uno. nuestra comisión será del 15 %</p>
                                         </div>
                                     </div>
                                 </div>
                                 <div className="row">
                                     <div className="col-md-6 mb-5 mb-md-0">
                                         <div className="text-center">
-                                            <i className="bi-gift icon-feature text-gradient d-block mb-3"></i>
+                                            <i className="bi-people-fill icon-feature text-gradient d-block mb-3"></i>
                                             <h3 className="font-alt">Comunidad</h3>
                                             <p className="text-muted mb-0">los pacientes en todo el país harán match con tus gustos y hobbies
                                                 para facilitar la conexión.</p>
@@ -197,7 +197,7 @@ function Home() {
                             <button className="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0" data-bs-toggle="modal">
                                 <a className="nav-link me-lg-3" href="/register">
                                     <span className="d-flex align-items-center">
-                                        <i className="bi-chat-text-fill me-2"></i>
+                                        <i className="bi-card-text me-2"></i>
                                         <span className="small">Trabaja con nosotros</span>
                                     </span>
                                 </a>
@@ -215,6 +215,11 @@ function Home() {
             </section>
             <footer className="bg-black text-center py-5">
                 <div className="container px-5">
+                    <div className="text-white-50 small">
+                        <div className="mb-2">Contacto:
+                        </div>
+                        <p>Email: contacto@Mindcare.com</p>
+                    </div>
                     <div className="text-white-50 small">
                         <div className="mb-2">&copy; MindCare 2024. All Rights Reserved.</div>
                     </div>

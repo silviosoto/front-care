@@ -84,9 +84,6 @@ function Register() {
 
     try {
 
-      CleanForm();
-      resetForm();
-      return true;
       if (!isPDF(data.file.name)) {
 
         data.file.value = '';
@@ -133,7 +130,7 @@ function Register() {
               text: "You clicked the button!",
               icon: "success"
             });
-            
+            CleanForm();
             resetForm();
           } else {
             if (data.status === 400) {

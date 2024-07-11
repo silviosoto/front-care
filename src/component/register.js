@@ -24,7 +24,7 @@ function Register() {
     estado: "1",
     validado: "0",
     idDatosPersonales: 0,
-    experiencia: null,
+    experiencia: "",
     nombre: "",
     apellidos: "",
     fechaNacimiento: "",
@@ -32,10 +32,11 @@ function Register() {
     email: "",
     telefono: "",
     tipoId: "1",
-    numeroId: null,
-    ciudad: null,
-    departamento: null,
+    numeroId: "",
+    ciudad: "",
+    departamento: "",
     file: "",
+    direccion: "",
     idDatosPersonalesNavigation: datosPsicologoInit,
     psicologoServicios: null,
     psicologoIdiomas: null
@@ -64,6 +65,10 @@ function Register() {
 
   })
 
+  const CleanForm = () =>{
+    document.getElementById("file").value = null;
+  }
+
   const isPDF = (nombreArchivo) => {
     // Obtener la extensión del archivo
     const extension = nombreArchivo.split('.').pop().toLowerCase();
@@ -75,10 +80,13 @@ function Register() {
     }
   }
 
-  const handleEnviar = (data) => {
+  const handleEnviar = (data,  { resetForm }) => {
 
     try {
 
+      CleanForm();
+      resetForm();
+      return true;
       if (!isPDF(data.file.name)) {
 
         data.file.value = '';
@@ -125,7 +133,8 @@ function Register() {
               text: "You clicked the button!",
               icon: "success"
             });
-
+            
+            resetForm();
           } else {
             if (data.status === 400) {
               data.json().then(function (object) {
@@ -374,7 +383,7 @@ function Register() {
                       Teléfono
                     </label>
                     <input
-                      type="text"
+                      type="number"
                       name="telefono"
                       id="telefono"
                       value={formik.values.telefono}
@@ -393,7 +402,7 @@ function Register() {
                       Identificación
                     </label>
                     <input
-                      type="text"
+                      type="number"
                       name="numeroId"
                       value={formik.values.numeroId}
                       onChange={formik.handleChange}
@@ -534,6 +543,7 @@ function Register() {
                     <input
                       class="form-control"
                       name="file"
+                      id= "file"
                       onChange={(e) => {
                         formik.setFieldValue('file', e.target.files[0])
                       }

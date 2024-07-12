@@ -30,7 +30,7 @@ function Register() {
     fechaNacimiento: "",
     descripcion: "",
     email: "",
-    telefono: null,
+    telefono: "",
     tipoId: "1",
     numeroId: "",
     ciudad: "",
@@ -380,7 +380,7 @@ function Register() {
                       Teléfono
                     </label>
                     <input
-                      type="number"
+                      type="text"
                       name="telefono"
                       id="telefono"
                       value={formik.values.telefono}
@@ -399,7 +399,7 @@ function Register() {
                       Identificación
                     </label>
                     <input
-                      type="number"
+                      type="text"
                       name="numeroId"
                       value={formik.values.numeroId}
                       onChange={formik.handleChange}

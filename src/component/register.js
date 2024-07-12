@@ -30,7 +30,7 @@ function Register() {
     fechaNacimiento: "",
     descripcion: "",
     email: "",
-    telefono: "",
+    telefono: null,
     tipoId: "1",
     numeroId: "",
     ciudad: "",

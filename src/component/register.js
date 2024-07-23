@@ -37,6 +37,7 @@ function Register() {
     departamento: "",
     file: "",
     direccion: "",
+    sugerencias: "",
     idDatosPersonalesNavigation: datosPsicologoInit,
     psicologoServicios: null,
     psicologoIdiomas: null
@@ -118,6 +119,7 @@ function Register() {
         idDatosPersonales: 0,
         experiencia: data.experiencia,
         idDatosPersonalesNavigation,
+        sugerencias: data.sugerencias,
         psicologoServicios: data.psicologoServicios,
       }
 
@@ -535,10 +537,10 @@ function Register() {
                     )}
                   </div>
                   <div className="col-md-6">
-                    <label for="formFile" class="form-label">CV</label>
+                    <label for="formFile" className="form-label">CV</label>
 
                     <input
-                      class="form-control"
+                      className="form-control"
                       name="file"
                       id= "file"
                       onChange={(e) => {
@@ -571,14 +573,33 @@ function Register() {
                       <div style={{ "color": "red" }}> {formik.errors.descripcion} </div>
                     )}
                   </div>
+
+                  <div className="col-md-6">
+                    <label
+                      className="form-label"
+                      htmlFor="grid-password"
+                    >
+                      Sugerencias
+                    </label>
+                    <textarea
+                      name="sugerencias"
+                      value={formik.values.sugerencias}
+                      onChange={formik.handleChange}
+                      className="form-control"
+                      placeholder='Cuentanos que te gustaria encontrar en MindCare, vnetajas segerencias. Queremos escucharte!'
+                      rows="4"
+                    ></textarea>
+                    {formik.errors.sugerencias && formik.touched.sugerencias && (
+                      <div style={{ "color": "red" }}> {formik.errors.sugerencias} </div>
+                    )}
+                  </div>
                   <div className="col-12">
                     <div className="row">
                       <div className="col-md-6">
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox" value="" required="true" id="flexCheckDefault" />
-                          <label class="form-check-label" for="flexCheckDefault">
-                            <p className='text-muted'>
-
+                        <div className="form-check">
+                          <input className="form-check-input" type="checkbox" value="" required="true" id="flexCheckDefault" />
+                          <label className="form-check-label" for="flexCheckDefault">
+                            <p className='text-muted' style={{fontSize: "12px"}}>
                             Autorizo el uso de mis datos de acuerdo a la Declaración de privacidad y acepto los Términos y condiciones y la <a className="text-reset" href='/autorizacionDatosPersonales' >Autorización de tratamiento de datos.</a>
                             </p>
                           </label>
